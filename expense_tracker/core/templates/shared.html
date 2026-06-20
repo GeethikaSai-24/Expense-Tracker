@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Shared Expenses</h2>
+
+{% for d in data %}
+<p>
+{{ d.expense.title }} |
+Share: {{ d.share_amount }} |
+Pending: {{ d.pending_amount }} |
+Status: {{ d.status }}
+</p>
+{% endfor %}
+
+{% endblock %}

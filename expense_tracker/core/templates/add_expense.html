@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Add Expense</h2>
+
+<form method="POST">
+{% csrf_token %}
+
+<input name="title" placeholder="Title" required>
+<input name="amount" type="number" step="0.01" required>
+
+<select name="category">
+<option>food</option>
+<option>transport</option>
+<option>shopping</option>
+</select>
+
+<input type="date" name="date">
+
+<select name="payment_mode">
+<option>cash</option>
+<option>upi</option>
+</select>
+
+<label>
+<input type="checkbox" id="sharedCheck" name="is_shared">
+Split with others
+</label>
+
+<div id="users" style="display:none;">
+{% for u in users %}
+<input type="checkbox" name="participants" value="{{u.id}}">
+{{u.username}} <br>
+{% endfor %}
+</div>
+
+<button>Add</button>
+</form>
+
+<script>
+document.getElementById('sharedCheck').onchange = function() {
+    document.getElementById('users').style.display =
+        this.checked ? 'block' : 'none';
+}
+</script>
+
+{% endblock %}

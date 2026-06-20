@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+<nav>
+    {% if user.is_authenticated %}
+        <a href="/dashboard/">Dashboard</a>
+        <a href="/add/">Add Expense</a>
+        <a href="/expenses/">Expenses</a>
+        <a href="/logout/">Logout</a>
+    {% else %}
+        <a href="/">Login</a>
+        <a href="/register/">Register</a>
+    {% endif %}
+</nav>
+
+<hr>
+
+{% block content %}{% endblock %}
+
+</body>
+</html>

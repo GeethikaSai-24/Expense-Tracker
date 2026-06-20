@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Register</h2>
+<form method="POST">
+{% csrf_token %}
+
+<input name="full_name" placeholder="Full Name" required>
+<input name="email" required>
+<input name="username" required>
+<input name="password" type="password" required>
+if len(password) < 8:
+    return render(request, 'register.html', {'error': 'Weak password'})
+<select name="currency">
+<option>INR</option>
+<option>USD</option>
+</select>
+
+<button>Register</button>
+
+</form>
+
+{% endblock %}

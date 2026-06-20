@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Budget Settings</h2>
+
+<form method="POST">
+{% csrf_token %}
+
+<select name="category">
+<option>food</option>
+<option>transport</option>
+<option>shopping</option>
+</select>
+
+<input type="month" name="month">
+<input name="amount">
+
+<button>Set Budget</button>
+</form>
+
+<hr>
+
+{% for b in budgets %}
+<p>{{ b.category }} - {{ b.month }} - {{ b.amount }}</p>
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Dashboard</h2>
+
+<h3>Total Expenses: {{ total }}</h3>
+<h3>You Owe: {{ owed }}</h3>
+<h3>You Are Owed: {{ receive }}</h3>
+<h3>Highest Category: {{ highest }}</h3>
+<hr>
+
+<h3>Pending Debts</h3>
+
+{% for d in debts %}
+  <p>{{ d.expense.title }} - {{ d.pending_amount }}</p>
+
+  <form method="POST" action="/repay/{{ d.id }}/">
+    {% csrf_token %}
+    <input name="amount" required>
+    <button>Pay</button>
+  </form>
+{% endfor %}
+
+{% endblock %}
